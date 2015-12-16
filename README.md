@@ -17,12 +17,12 @@ There is also a sample app which uses this lib available here: (https://github.c
 ##Initialise 
 
 ```
-//call in intiVars()
+//call in initVars()
 MyNative my = (MyNative) NativeLookup.create(MyNative.class);
 if (my!=null && my.isSupported())
 {           
     my.onResume_(); //I think we need this, and maybe others for onPause etc..
-    my.setPlc("1000741"); // you must set your PLC before you try to show an ad, this is the test PLC which should work too
+    my.setPlc("1000741"); // set your PLC before showing an ad, this is the test PLC which should work too
 }
 ```
 
