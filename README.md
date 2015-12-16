@@ -10,7 +10,7 @@ Developed by Gareth Murfin (www.garethmurfin.co.uk) - Codename One and Android F
 
 Also note that this lib contains a newer Vungle lib (vungle-publisher-adaptive-id-3.3.3.1.jar) for Android than the one shipped with the AerServ SDK in order to get around a bug where some classes are not found at runtime using the old one they ship. 
 
-There is also a sample app which uses this lib available here: (https://github.com/amiga/aerserv-codenameone-testbed). Please note you can use PLC 10000741 to test if the lib is working, and also specifically to test Vungle you can use 1002823 on Android or 1002091 on iOS. You will need to set up an AerServ account and add some ad sources to get your own PLC. Also note you need to see the plc after intialising.
+There is also a sample app which uses this lib available here: (https://github.com/amiga/aerserv-codenameone-testbed). Please note you can use PLC 10000741 to test if the lib is working, and also specifically to test Vungle you can use 1002823 on Android or 1002091 on iOS. You will need to set up an AerServ account and add some ad sources to get your own PLC. Also note you need to set the PLC from AerServ after intialising.
 
 #Usage
 
@@ -22,7 +22,7 @@ MyNative my = (MyNative) NativeLookup.create(MyNative.class);
 if (my!=null && my.isSupported())
 {           
     my.onResume_(); //I think we need this, and maybe others for onPause etc..
-    my.setPlc("1000741"); // you must set your plc before you try to show an ad, this is the test plc
+    my.setPlc("1000741"); // you must set your PLC before you try to show an ad, this is the test PLC which should work too
 }
 ```
 
