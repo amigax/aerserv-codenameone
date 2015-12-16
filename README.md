@@ -10,7 +10,7 @@ Developed by Gareth Murfin (www.garethmurfin.co.uk) - Codename One and Android F
 
 Also note that this lib contains a newer Vungle lib (vungle-publisher-adaptive-id-3.3.3.1.jar) for Android than the one shipped with the AerServ SDK in order to get around a bug where some classes are not found at runtime using the old one they ship. 
 
-There is also a sample app which uses this lib available here: xxxx.com. Please note you can use PLC 10000741 to test if the lib is working, and also specifically to test Vungle you can use 1002823 on Android or 1002091 on iOS. You will need to set up an AerServ account and ad some ad sources to get your own PLC. Also note you don't need to see the plc each time, just once after intialising.
+There is also a sample app which uses this lib available here: xxxx.com. Please note you can use PLC 10000741 to test if the lib is working, and also specifically to test Vungle you can use 1002823 on Android or 1002091 on iOS. You will need to set up an AerServ account and ad some ad sources to get your own PLC. Also note you need to see the plc after intialising.
 
 #Usage
 
