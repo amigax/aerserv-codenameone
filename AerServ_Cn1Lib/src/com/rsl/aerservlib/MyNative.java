@@ -13,27 +13,8 @@ import com.codename1.system.NativeInterface;
  */
 public interface MyNative extends NativeInterface{
     
-   /*   public void intialise(String adType);
-    
-    public void showInterstitialVideo();
-    
-    public void showInterstitialImage();
-    
-    public Object getBanner();//erm? cant return banner how do i do this?
-    
-    //lifecycle stuff, added because i think you need them, doesnt seem to work until onresuem is called? VERIFY THAT
-    public void onResume_();
-    public void onPause_();
-    public void onDestroy_();*/
-    
-    
-    
-   
-    
-    
-    
      public void onCreate();//Bundle savedInstanceState);
-     public void onResume_();
+     public void onResume();
      public void onPause();
      public void onDestroy();
      public void preloadInterstitial();//View view);
@@ -46,8 +27,7 @@ public interface MyNative extends NativeInterface{
      public void loadInterstitial();//View view);
      public void showBanner();//View view) ;
      
-     public void setPlc(String plc_);
-   
+     public void setPlc(String plc_);   
      public String getPlc() ;
 
 }
