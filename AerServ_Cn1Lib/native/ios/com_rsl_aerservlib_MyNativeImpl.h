@@ -1,9 +1,8 @@
-#import <Foundation/Foundation.h>
 #import "CodenameOne_GLViewController.h"
 #import "AerServSDK.h"
 
-@interface com_rsl_aerservlib_MyNativeImpl : CodenameOne_GLViewController   {}
-@property (nonatomic, assign) ASInterstitialViewController *adController;
+@interface com_rsl_aerservlib_MyNativeImpl : NSObject {}
+
 
 -(void)setProduction;
 -(void)onCreate;
@@ -21,4 +20,5 @@
 -(void)setStaging;
 -(void)preloadInterstitial;
 -(BOOL)isSupported;
+
 @end

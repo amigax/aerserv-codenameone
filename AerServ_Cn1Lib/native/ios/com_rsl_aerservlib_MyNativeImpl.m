@@ -4,11 +4,12 @@
 
 @interface com_rsl_aerservlib_MyNativeImpl ()<ASInterstitialViewControllerDelegate, ASAdViewDelegate>
 
+@property (strong, nonatomic) ASInterstitialViewController* adController;
+@property (nonatomic, assign) BOOL isLoaded;
+
 @end
 
 @implementation com_rsl_aerservlib_MyNativeImpl
-
-//@synthesize adController;
 
 - (UIViewController *)viewControllerForPresentingModalView {
     return [CodenameOne_GLViewController instance];//self;
@@ -16,19 +17,27 @@
 
 -(void)setProduction{}
 -(void)onCreate{ //THIS METHOD GETS CALLED FIRST
+    // Do any additional setup after loading the view, typically from a nib.
     NSLog(@"onCreate()");
-    self.adController = [[ASInterstitialViewController alloc] viewControllerForPlacementID:1000741 withDelegate:self];
-    //self.adController.showOutline = YES;
+    self.isLoaded = NO;
     NSLog(@"a()");
-    [self.adController loadAd];
+    self.adController = [[ASInterstitialViewController alloc] viewControllerForPlacementID:@"1000741" withDelegate:self];
     NSLog(@"b()");
-    [self.adController showFromViewController:self];
+    self.adController.isPreload = YES;
     NSLog(@"c()");
-    
+    [self.adController loadAd];
+    NSLog(@"d()");
     
     
  //[self showInterstitial];
 }
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view, typically from a nib.
+    NSLog(@"viewDidLoad()");
+   }
+
 -(void)setDev{}
 -(void)onPause{}
 -(void)pauseBanner{}
@@ -67,5 +76,31 @@ NSString *myPlc = @"...";
 }
 
 //////////////////////////////////
+
+/// Ad Preloaded ///
+- (void)interstitialViewControllerDidPreloadAd:(ASInterstitialViewController *)viewController {
+    NSLog(@"interstitialViewControllerDidPreloadAd");
+    self.isLoaded = YES;
+    [self.adController showFromViewController:self];
+}
+/// Ad loaded ///
+- (void)interstitialViewControllerAdLoadedSuccessfully:(ASInterstitialViewController *)viewController {
+    NSLog(@"Ad loaded");
+    self.isLoaded = YES;
+    [self.adController showFromViewController:self];
+}
+/// Ad Failed ///
+- (void)interstitialViewControllerAdFailedToLoad:(ASInterstitialViewController*)viewController withError:(NSError*)error {
+    NSLog(@"Ad Failed to load with error:%@", error);
+}
+/// Ad Clicked ///
+- (void)interstitialViewControllerAdWasTouched:(ASInterstitialViewController *)viewController {
+    NSLog(@"ad was touched");
+}
+/// Ad Dismissed ///
+- (void)interstitialViewControllerDidDisappear:(ASInterstitialViewController *)viewController {
+    self.adController = nil;
+    NSLog(@"ad dismissed");
+}
 
 @end
