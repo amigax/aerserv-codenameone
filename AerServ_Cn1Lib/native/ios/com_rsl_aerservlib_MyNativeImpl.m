@@ -20,6 +20,7 @@
 
 
 -(void)onCreate{ //this does the work, but it still doesnt work, advert times out, even though on native one it doesnt time out.
+                //only difference I see is that native on does work in viewDidAppear, can that make a difference?
     NSLog(@"onCreate()GAZ");
     self.isLoaded = NO;
     NSLog(@"a()");
