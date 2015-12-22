@@ -2,7 +2,7 @@
 #import "CodenameOne_GLViewController.h"
 #import "AerServSDK.h"
 
-@interface com_rsl_aerservlib_MyNativeImpl ()<ASInterstitialViewControllerDelegate, ASAdViewDelegate>
+@interface com_rsl_aerservlib_MyNativeImpl ()<ASInterstitialViewControllerDelegate, ASAdViewDelegate> //is this right????
 
 @property (strong, nonatomic) ASInterstitialViewController* adController;
 @property (nonatomic, assign) BOOL isLoaded;
@@ -11,14 +11,16 @@
 
 @implementation com_rsl_aerservlib_MyNativeImpl
 
-- (UIViewController *)viewControllerForPresentingModalView {
-    return [CodenameOne_GLViewController instance];//self;
+- (UIViewController *)viewControllerForPresentingModalView { // never gets called
+    NSLog(@"viewControllerForPresentingModalView()");
+    return [CodenameOne_GLViewController instance];//.view;//self;//[CodenameOne_GLViewController instance];//self;
 }
 
 -(void)setProduction{}
--(void)onCreate{ //THIS METHOD GETS CALLED FIRST
-    // Do any additional setup after loading the view, typically from a nib.
-    NSLog(@"onCreate()");
+
+
+-(void)onCreate{ //this does the work, but it still doesnt work, advert times out, even though on native one it doesnt time out.
+    NSLog(@"onCreate()GAZ");
     self.isLoaded = NO;
     NSLog(@"a()");
     self.adController = [[ASInterstitialViewController alloc] viewControllerForPlacementID:@"1000741" withDelegate:self];
@@ -27,16 +29,7 @@
     NSLog(@"c()");
     [self.adController loadAd];
     NSLog(@"d()");
-    
-    
- //[self showInterstitial];
 }
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    NSLog(@"viewDidLoad()");
-   }
 
 -(void)setDev{}
 -(void)onPause{}
@@ -81,17 +74,17 @@ NSString *myPlc = @"...";
 - (void)interstitialViewControllerDidPreloadAd:(ASInterstitialViewController *)viewController {
     NSLog(@"interstitialViewControllerDidPreloadAd");
     self.isLoaded = YES;
-    [self.adController showFromViewController:self];
+    [self.adController showFromViewController:[CodenameOne_GLViewController instance]];//self];
 }
 /// Ad loaded ///
 - (void)interstitialViewControllerAdLoadedSuccessfully:(ASInterstitialViewController *)viewController {
     NSLog(@"Ad loaded");
     self.isLoaded = YES;
-    [self.adController showFromViewController:self];
+    [self.adController showFromViewController:[CodenameOne_GLViewController instance]];//self];
 }
 /// Ad Failed ///
 - (void)interstitialViewControllerAdFailedToLoad:(ASInterstitialViewController*)viewController withError:(NSError*)error {
-    NSLog(@"Ad Failed to load with error:%@", error);
+    NSLog(@"////Ad Failed to load with error:%@", error);
 }
 /// Ad Clicked ///
 - (void)interstitialViewControllerAdWasTouched:(ASInterstitialViewController *)viewController {

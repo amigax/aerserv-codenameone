@@ -1,8 +1,10 @@
 #import "CodenameOne_GLViewController.h"
 #import "AerServSDK.h"
+#import <Foundation/Foundation.h>
 
-@interface com_rsl_aerservlib_MyNativeImpl : NSObject {}
+@interface com_rsl_aerservlib_MyNativeImpl : NSObject {
 
+}
 
 -(void)setProduction;
 -(void)onCreate;
@@ -22,3 +24,4 @@
 -(BOOL)isSupported;
 
 @end
+

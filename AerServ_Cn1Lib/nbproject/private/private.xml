@@ -4,10 +4,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/ALL_CODE/_REPOS/aerserv-codenameone-master/AerServ_Cn1Lib/src/com/rsl/aerservlib/MyNative.java</file>
-            <file>file:/E:/ALL_CODE/_REPOS/aerserv-codenameone-master/AerServ_Cn1Lib/native/ios/com_rsl_aerservlib_MyNativeImpl.m</file>
-            <file>file:/E:/ALL_CODE/_REPOS/aerserv-codenameone-master/AerServ_Cn1Lib/native/android/com/rsl/aerservlib/MyNativeImpl.java</file>
             <file>file:/E:/ALL_CODE/_REPOS/aerserv-codenameone-master/AerServ_Cn1Lib/native/ios/com_rsl_aerservlib_MyNativeImpl.h</file>
+            <file>file:/E:/ALL_CODE/_REPOS/aerserv-codenameone-master/AerServ_Cn1Lib/native/ios/ASAdView.h</file>
+            <file>file:/E:/ALL_CODE/_REPOS/aerserv-codenameone-master/AerServ_Cn1Lib/native/ios/com_rsl_aerservlib_MyNativeImpl.m</file>
+            <file>file:/E:/ALL_CODE/_REPOS/aerserv-codenameone-master/AerServ_Cn1Lib/src/com/rsl/aerservlib/MyNative.java</file>
+            <file>file:/E:/ALL_CODE/_REPOS/aerserv-codenameone-master/AerServ_Cn1Lib/native/ios/AerServSDK.h</file>
+            <file>file:/E:/ALL_CODE/_REPOS/aerserv-codenameone-master/AerServ_Cn1Lib/native/android/com/rsl/aerservlib/MyNativeImpl.java</file>
         </group>
     </open-files>
 </project-private>
