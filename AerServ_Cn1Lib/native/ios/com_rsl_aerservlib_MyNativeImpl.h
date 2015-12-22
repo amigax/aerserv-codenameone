@@ -1,11 +1,9 @@
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "CodenameOne_GLViewController.h"
+#import "AerServSDK.h"
 
-
-
-
-@interface com_rsl_aerservlib_MyNativeImpl : UIViewController //{
-//}
+@interface com_rsl_aerservlib_MyNativeImpl : CodenameOne_GLViewController   {}
+@property (nonatomic, assign) ASInterstitialViewController *adController;
 
 -(void)setProduction;
 -(void)onCreate;
