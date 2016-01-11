@@ -2,10 +2,16 @@
 #import "AerServSDK.h"
 #import <Foundation/Foundation.h>
 
-@interface com_rsl_aerservlib_MyNativeImpl : NSObject {
 
+@interface com_rsl_aerservlib_MyNativeImpl : NSObject<ASInterstitialViewControllerDelegate> {
+     //  ASInterstitialViewController* adController;
+//   //BOOL isLoaded;
 }
+/*@interface com_rsl_aerservlib_MyNativeImpl : NSObject {
 
+}*/
++(void)calledFromBuildHint;
+    
 -(void)setProduction;
 -(void)onCreate;
 -(void)setDev;

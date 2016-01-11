@@ -2,13 +2,15 @@
 #import "CodenameOne_GLViewController.h"
 #import "AerServSDK.h"
 
-@interface com_rsl_aerservlib_MyNativeImpl ()<ASInterstitialViewControllerDelegate, ASAdViewDelegate> //is this right????
+//moved this into header, and removed self from all the references to the vars etc
+/*@interface com_rsl_aerservlib_MyNativeImpl ()<ASInterstitialViewControllerDelegate, ASAdViewDelegate> //is this right????
 
 @property (strong, nonatomic) ASInterstitialViewController* adController;
 @property (nonatomic, assign) BOOL isLoaded;
 
-@end
-
+@end*/
+ ASInterstitialViewController* adController;
+BOOL isLoaded;
 @implementation com_rsl_aerservlib_MyNativeImpl
 
 - (UIViewController *)viewControllerForPresentingModalView { // never gets called
@@ -19,17 +21,24 @@
 -(void)setProduction{}
 
 
--(void)onCreate{ //this does the work, but it still doesnt work, advert times out, even though on native one it doesnt time out.
++(void)calledFromBuildHint{
+ NSLog(@"calledFromBuildHint()GAZ");
+   }
+
+-(void)onCreate{
+    dispatch_async(dispatch_get_main_queue(), ^{
+    //this does the work, but it still doesnt work, advert times out, even though on native one it doesnt time out.
                 //only difference I see is that native on does work in viewDidAppear, can that make a difference?
     NSLog(@"onCreate()GAZ");
-    self.isLoaded = NO;
+    isLoaded = NO;
     NSLog(@"a()");
-    self.adController = [[ASInterstitialViewController alloc] viewControllerForPlacementID:@"1000741" withDelegate:self];
+    adController = [[ASInterstitialViewController alloc] viewControllerForPlacementID:@"1000741" withDelegate:self];
     NSLog(@"b()");
-    self.adController.isPreload = YES;
+    adController.isPreload = YES;
     NSLog(@"c()");
-    [self.adController loadAd];
+    [adController loadAd];
     NSLog(@"d()");
+         });
 }
 
 -(void)setDev{}
@@ -74,14 +83,14 @@ NSString *myPlc = @"...";
 /// Ad Preloaded ///
 - (void)interstitialViewControllerDidPreloadAd:(ASInterstitialViewController *)viewController {
     NSLog(@"interstitialViewControllerDidPreloadAd");
-    self.isLoaded = YES;
-    [self.adController showFromViewController:[CodenameOne_GLViewController instance]];//self];
+    isLoaded = YES;
+    [adController showFromViewController:[CodenameOne_GLViewController instance]];//self];
 }
 /// Ad loaded ///
 - (void)interstitialViewControllerAdLoadedSuccessfully:(ASInterstitialViewController *)viewController {
     NSLog(@"Ad loaded");
-    self.isLoaded = YES;
-    [self.adController showFromViewController:[CodenameOne_GLViewController instance]];//self];
+    isLoaded = YES;
+    [adController showFromViewController:[CodenameOne_GLViewController instance]];//self];
 }
 /// Ad Failed ///
 - (void)interstitialViewControllerAdFailedToLoad:(ASInterstitialViewController*)viewController withError:(NSError*)error {
@@ -93,7 +102,7 @@ NSString *myPlc = @"...";
 }
 /// Ad Dismissed ///
 - (void)interstitialViewControllerDidDisappear:(ASInterstitialViewController *)viewController {
-    self.adController = nil;
+    adController = nil;
     NSLog(@"ad dismissed");
 }
 
