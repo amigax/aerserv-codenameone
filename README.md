@@ -4,9 +4,10 @@ Library extension of AerServ (www.aerserv.com) for the Codename One platform (ht
 
 This library supports AerServ interstitial Ads (Fullscreen video Ads) by supporting AerServ's core ones (Vpodia, Spot exchange, Millenia, Inmobi, Tapit) as well as additional ones I have added the jars for (Vungle, AdColony) you can add more as you please.
 
-This library is implemented for Android an iOS (coming soon). Please note this library is still experimental it could use some refactoring (like MyNative ;)) as well as banner ad support, feel free to fork and fix :-)
+This library is implemented for Android and iOS. Please note this library is still very experimental it could use some refactoring (like MyNative ;)) as well as banner ad support, feel free to fork and fix :-) I will try to improve this as I go.
 
 Developed by Gareth Murfin (www.garethmurfin.co.uk) - Codename One and Android Freelance developer.
+HUGE thank you to Shai, Chen & Steve at CN1, who helped make this possible.
 
 Also note that this lib contains a newer Vungle lib (vungle-publisher-adaptive-id-3.3.3.1.jar) for Android than the one shipped with the AerServ SDK in order to get around a bug where some classes are not found at runtime using the old one they ship. 
 
