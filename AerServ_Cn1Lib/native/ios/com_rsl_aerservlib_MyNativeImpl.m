@@ -1,6 +1,7 @@
 #import "com_rsl_aerservlib_MyNativeImpl.h"
 #import "CodenameOne_GLViewController.h"
 #import "AerServSDK.h"
+#import "com_rsl_aerservlib_Callback.h"
 
 //moved this into header, and removed self from all the references to the vars etc
 /*@interface com_rsl_aerservlib_MyNativeImpl ()<ASInterstitialViewControllerDelegate, ASAdViewDelegate> //is this right????
@@ -93,26 +94,35 @@ NSString *myPlc = @"1000741";
     NSLog(@"interstitialViewControllerDidPreloadAd");
     isLoaded = YES;
     [adController showFromViewController:[CodenameOne_GLViewController instance]];//self];
+
+    com_rsl_aerservlib_Callback_advertPreloaded__(CN1_THREAD_GET_STATE_PASS_SINGLE_ARG);
 }
 /// Ad loaded ///
 - (void)interstitialViewControllerAdLoadedSuccessfully:(ASInterstitialViewController *)viewController {
     NSLog(@"Ad loaded");
     isLoaded = YES;
     [adController showFromViewController:[CodenameOne_GLViewController instance]];//self];
+
+    com_rsl_aerservlib_Callback_advertLoaded__(CN1_THREAD_GET_STATE_PASS_SINGLE_ARG);
 }
 /// Ad Failed ///
 - (void)interstitialViewControllerAdFailedToLoad:(ASInterstitialViewController*)viewController withError:(NSError*)error {
     NSLog(@"////Ad Failed to load with error:%@", error);
+
+    com_rsl_aerservlib_Callback_advertFailed__(CN1_THREAD_GET_STATE_PASS_SINGLE_ARG);
 }
 /// Ad Clicked ///
 - (void)interstitialViewControllerAdWasTouched:(ASInterstitialViewController *)viewController {
     NSLog(@"ad was touched");
+
+    com_rsl_aerservlib_Callback_advertClicked__(CN1_THREAD_GET_STATE_PASS_SINGLE_ARG);
 }
 /// Ad Dismissed ///
 - (void)interstitialViewControllerDidDisappear:(ASInterstitialViewController *)viewController {
     adController = nil;
-    NSLog(@"ad dismissed");
+    NSLog(@"ad dismissed OR FINISHED.");
     //this is what is called when the advert ends or is cancelled, we want a call back into the java for this so we know when its ended.
+    com_rsl_aerservlib_Callback_advertDismissed__(CN1_THREAD_GET_STATE_PASS_SINGLE_ARG);
 }
 
 @end
