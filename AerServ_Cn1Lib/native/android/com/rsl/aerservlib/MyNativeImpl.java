@@ -74,6 +74,9 @@ public static com.vungle.publisher.FullScreenAdActivity xxx;
     public void showInterstitial() {
         if (interstitial != null) interstitial.show();
     }
+    
+    public void onResume() {
+    } 
 
     public void onPause() {
     }       

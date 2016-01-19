@@ -26,20 +26,7 @@ BOOL isLoaded;
    }
 
 -(void)onCreate{
-    dispatch_async(dispatch_get_main_queue(), ^{
-    //this does the work, but it still doesnt work, advert times out, even though on native one it doesnt time out.
-                //only difference I see is that native on does work in viewDidAppear, can that make a difference?
-    NSLog(@"onCreate()GAZ");
-    isLoaded = NO;
-    NSLog(@"a()");
-    adController = [[ASInterstitialViewController alloc] viewControllerForPlacementID:@"1000741" withDelegate:self];
-    NSLog(@"b()");
-    adController.isPreload = YES;
-    NSLog(@"c()");
-    [adController loadAd];
-    NSLog(@"d()");
-         });
-}
+    }
 
 -(void)setDev{}
 -(void)onPause{}
@@ -53,7 +40,7 @@ BOOL isLoaded;
     return YES;
 }
 
-NSString *myPlc = @"...";
+NSString *myPlc = @"1000741";
 - (void)setPlc:(NSString *) plc {
     NSLog(@"setPlc()");
     NSLog(@"___The plc is %@", plc);
@@ -67,7 +54,23 @@ NSString *myPlc = @"...";
 }
 
 - (void)preloadInterstitial {
-    NSLog(@"preloadInterstitial()");
+    
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"preloadInterstitial()");
+        //this does the work, but it still doesnt work, advert times out, even though on native one it doesnt time out.
+        //only difference I see is that native on does work in viewDidAppear, can that make a difference?
+        NSLog(@"___________..");
+        isLoaded = NO;
+        NSLog(@"___________a()");
+        adController = [[ASInterstitialViewController alloc] viewControllerForPlacementID:myPlc withDelegate:self];
+        NSLog(@"___________b()");
+        adController.isPreload = YES;
+        NSLog(@"___________c()");
+       // [adController loadAd];
+       // NSLog(@"d()");
+    });
+
 }
 
 - (void)loadInterstitial {
@@ -75,7 +78,12 @@ NSString *myPlc = @"...";
     
 }
 - (void)showInterstitial {
-    NSLog(@"showInterstitial()");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"showInterstitial()");
+        [adController loadAd];
+        NSLog(@"___________d()");
+    });
+
 }
 
 //////////////////////////////////
@@ -104,6 +112,7 @@ NSString *myPlc = @"...";
 - (void)interstitialViewControllerDidDisappear:(ASInterstitialViewController *)viewController {
     adController = nil;
     NSLog(@"ad dismissed");
+    //this is what is called when the advert ends or is cancelled, we want a call back into the java for this so we know when its ended.
 }
 
 @end
