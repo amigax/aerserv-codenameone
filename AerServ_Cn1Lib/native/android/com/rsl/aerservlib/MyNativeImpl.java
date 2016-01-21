@@ -48,6 +48,7 @@ public static com.vungle.publisher.FullScreenAdActivity xxx;
                 switch (event) {
                     case AD_FAILED:
                     msg = "Ad Failed with message: " + args.get(0).toString();
+                    Callback.advertFailed();
                 break;
                 case VC_READY:
                     AerServVirtualCurrency vcObject = (AerServVirtualCurrency) args.get(0);
@@ -58,10 +59,23 @@ public static com.vungle.publisher.FullScreenAdActivity xxx;
                     msg = "Virtual Currency PLC has rewarded: " + vcObject2.getName() + ", " + vcObject2.getAmount().toString();
                 break;
                 default:
-                    msg = event.toString() + " event fired with args: " + args.toString(); 
+                    msg = "Default (event:"+event+"):"+ event.toString() + " event fired with args: " + args.toString(); 
                 }
              Toast.makeText(selfContext, msg, Toast.LENGTH_SHORT).show();
-             Log.d(TAG, msg);
+             _("MSG: "+msg);
+             
+             if (msg.contains("PRELOAD_READY"))
+             {
+                 Callback.advertPreloaded();
+             }
+             if (msg.contains("VIDEO_START"))
+             {
+                 
+             }
+             if (msg.contains("VIDEO_COMPLETED"))
+             {
+                 Callback.advertDismissed();
+             }
             }
           });
         }
@@ -72,6 +86,7 @@ public static com.vungle.publisher.FullScreenAdActivity xxx;
     }  
 
     public void showInterstitial() {
+        _("showInterstitial");
         if (interstitial != null) interstitial.show();
     }
     
