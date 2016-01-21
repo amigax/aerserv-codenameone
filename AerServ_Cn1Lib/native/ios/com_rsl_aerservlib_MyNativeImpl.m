@@ -68,8 +68,8 @@ NSString *myPlc = @"1000741";
         NSLog(@"___________b()");
         adController.isPreload = YES;
         NSLog(@"___________c()");
-       // [adController loadAd];
-       // NSLog(@"d()");
+        [adController loadAd];
+        NSLog(@"___________d()");
     });
 
 }
@@ -81,7 +81,18 @@ NSString *myPlc = @"1000741";
 - (void)showInterstitial {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog(@"showInterstitial()");
-        [adController loadAd];
+       // [adController loadAd];
+        if (isLoaded)
+        {
+            NSLog(@"___________advert is loaded");
+ [adController showFromViewController:[CodenameOne_GLViewController instance]];//self];
+        }
+        else
+        {
+            NSLog(@"___________advert is NOT loaded, explicitly call dismiss to continue.");
+            com_rsl_aerservlib_Callback_advertDismissed__(CN1_THREAD_GET_STATE_PASS_SINGLE_ARG);
+        }
+       
         NSLog(@"___________d()");
     });
 
@@ -91,9 +102,9 @@ NSString *myPlc = @"1000741";
 
 /// Ad Preloaded ///
 - (void)interstitialViewControllerDidPreloadAd:(ASInterstitialViewController *)viewController {
-    NSLog(@"interstitialViewControllerDidPreloadAd");
+    NSLog(@"...............interstitialViewControllerDidPreloadAd...................");
     isLoaded = YES;
-    [adController showFromViewController:[CodenameOne_GLViewController instance]];//self];
+    //[adController showFromViewController:[CodenameOne_GLViewController instance]];// auto play when ready
 
     com_rsl_aerservlib_Callback_advertPreloaded__(CN1_THREAD_GET_STATE_PASS_SINGLE_ARG);
 }
