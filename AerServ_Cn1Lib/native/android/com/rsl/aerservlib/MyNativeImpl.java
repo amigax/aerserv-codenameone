@@ -61,8 +61,9 @@ public static com.vungle.publisher.FullScreenAdActivity xxx;
                 default:
                     msg = "Default (event:"+event+"):"+ event.toString() + " event fired with args: " + args.toString(); 
                 }
-             Toast.makeText(selfContext, msg, Toast.LENGTH_SHORT).show();
+          //   Toast.makeText(selfContext, msg, Toast.LENGTH_SHORT).show();
              _("MSG: "+msg);
+             
              
              if (msg.contains("PRELOAD_READY"))
              {
@@ -72,8 +73,9 @@ public static com.vungle.publisher.FullScreenAdActivity xxx;
              {
                  
              }
-             if (msg.contains("VIDEO_COMPLETED"))
+             if (msg.contains("AD_COMPLETED"))
              {
+                 _("call dismiss");
                  Callback.advertDismissed();
              }
             }
@@ -158,17 +160,17 @@ public static com.vungle.publisher.FullScreenAdActivity xxx;
 
     public void setDev(){//View view) {
         AerServConfig.setBaseUrlTo("http://dev.ads.aerserv.com/as/sdk/v1/");
-        Toast.makeText(selfContext, "Set to dev: dev.ads.aerserv.com", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(selfContext, "Set to dev: dev.ads.aerserv.com", Toast.LENGTH_SHORT).show();
     }
 
     public void setStaging(){//View view) {
         AerServConfig.setToStagingUrl();
-        Toast.makeText(selfContext, "Set to staging: staging.ads.aerserv.com", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(selfContext, "Set to staging: staging.ads.aerserv.com", Toast.LENGTH_SHORT).show();
     }
 
     public void setProduction(){//View view) {
         AerServConfig.setToProductionUrl();
-        Toast.makeText(selfContext, "Set to prod: ads.aerserv.com", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(selfContext, "Set to prod: ads.aerserv.com", Toast.LENGTH_SHORT).show();
     }
 
     public void preloadInterstitial() {
