@@ -102,7 +102,8 @@ public static com.vungle.publisher.FullScreenAdActivity xxx;
     {
         _("loadInterstitial()");
         selfContext=AndroidNativeUtil.getActivity();
-        AerServConfig config = new AerServConfig(selfContext, getPlc()).setKeywords(keywords).setEventListener(listener).setDebug(true).setVerbose(true);
+        AerServConfig config = new AerServConfig(selfContext, getPlc()).setKeywords(keywords).setEventListener(listener).setDebug(false).setVerbose(true);
+         AerServConfig.setToProductionUrl();
         interstitial = new AerServInterstitial(config);
 	interstitial.show();
     }
@@ -113,7 +114,7 @@ public static com.vungle.publisher.FullScreenAdActivity xxx;
         plc=plc_;
     }
     public String getPlc() {
-        _("returning your plc:"+plc);
+      //  _("returning your plc:"+plc);
         if (plc.length()==0)
         {
             _("Warning! plc was empty did you call setPlc() ?");
@@ -175,7 +176,8 @@ public static com.vungle.publisher.FullScreenAdActivity xxx;
 
     public void preloadInterstitial() {
         selfContext=AndroidNativeUtil.getActivity();
-        final AerServConfig config = new AerServConfig(selfContext, getPlc()).setKeywords(keywords).setEventListener(listener).setDebug(true).setPreload(true);
+        final AerServConfig config = new AerServConfig(selfContext, getPlc()).setKeywords(keywords).setEventListener(listener).setDebug(false).setPreload(true);
+         AerServConfig.setToProductionUrl();
 	interstitial = new AerServInterstitial(config);
     }
 
